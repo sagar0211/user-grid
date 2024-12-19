@@ -1,7 +1,4 @@
 export interface User {
-  total_pages: number;
-  per_page: any;
-  total: any;
   id: number;
   email: string;
   first_name: string;

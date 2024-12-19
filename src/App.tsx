@@ -14,13 +14,18 @@ const App: React.FC = () => {
   );
 
   useEffect(() => {
-    console.log("code here");
-    dispatch(fetchUsers(currentPage));
-  }, []);
+    // Fetch if data for the page is not present
+    if (!users[currentPage]) { 
+      dispatch(fetchUsers(currentPage || 1)); // Fetch the first page if currentPage is 0
+    }
+  }, [dispatch, currentPage, users]);
 
   const handlePageChange = (page: number) => {
-    // dispatch(fetchUsers(page));
+    dispatch(fetchUsers(page));
   };
+
+  // Display users of the current page
+  const currentPageUsers = users[currentPage] || [];
 
   return (
     <div className="container mx-auto py-8">
@@ -30,7 +35,7 @@ const App: React.FC = () => {
         <div>Error: {error}</div>
       ) : (
         <>
-          <UserGrid users={users} />
+          <UserGrid users={currentPageUsers} />
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

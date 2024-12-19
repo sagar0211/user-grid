@@ -7,7 +7,7 @@ import {
 } from "./userActions";
 
 interface UserState {
-  users: User[];
+  users: { [key: number]: User[] };
   loading: boolean;
   error: string | null;
   currentPage: number;
@@ -15,7 +15,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  users: [],
+  users: {},
   loading: false,
   error: null,
   currentPage: 0,
@@ -32,13 +32,13 @@ const userReducer = (
     case FETCH_USERS_SUCCESS:
       return {
         ...state,
-        users: [...state.users, ...action.payload],
+        users: {
+          ...state.users,
+          [action.payload.page]: action.payload.data,
+        },
         loading: false,
-        currentPage: state.currentPage + 1,
-        totalPages:
-          action.payload.length > 0
-            ? Math.ceil(action.payload[0].total / action.payload[0].per_page)
-            : 0,
+        currentPage: action.payload.page,
+        totalPages: action.payload.total_pages,
       };
     case FETCH_USERS_FAILURE:
       return { ...state, loading: false, error: action.payload };
