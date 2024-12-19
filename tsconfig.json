@@ -20,5 +20,6 @@
     "noResolve": false,
     "noImplicitAny": false
   },
-  "include": ["src", "./node_modules/**/*"]
+  "include": ["src", "./node_modules/**/*"],
+  "types": ["jest"]
 }
