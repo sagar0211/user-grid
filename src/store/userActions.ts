@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import {  UserResponse } from "../types";
+import { UserResponse } from "../types";
 import UserService from "../services/UserService";
 
 export const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";

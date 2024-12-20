@@ -4,7 +4,7 @@ import { UserResponse } from "../types";
 class UserService {
   static async fetchUsers(page: number): Promise<UserResponse> {
     const response = await axios.get<UserResponse>(
-      `https://reqres.in/api/users?page=${page}`
+      process.env.REACT_APP_API_ENDPOINT + `?page=${page}`
     );
     return response.data;
   }

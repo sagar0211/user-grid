@@ -15,16 +15,19 @@ const Pagination: React.FC<PaginationProps> = ({
     onPageChange(page);
   };
 
+  const getPaginationListClassName = (isCurrent: boolean) => {
+    return `cursor-pointer px-3 py-2 ${
+      isCurrent ? "bg-blue-500 text-white" : "hover:bg-gray-200"
+    }`;
+  };
   const renderPageNumbers = () => {
     const pageNumbers: any[] = [];
     for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(
+      pageNumbers?.push(
         <li
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`cursor-pointer px-3 py-2 ${
-            i === currentPage ? "bg-blue-500 text-white" : "hover:bg-gray-200"
-          }`}
+          className={getPaginationListClassName(i === currentPage)}
         >
           {i}
         </li>

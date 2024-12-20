@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Fetch if data for the page is not present
-    if (!users[currentPage]) { 
+    if (!users[currentPage]) {
       dispatch(fetchUsers(currentPage || 1)); // Fetch the first page if currentPage is 0
     }
   }, [dispatch, currentPage, users]);
